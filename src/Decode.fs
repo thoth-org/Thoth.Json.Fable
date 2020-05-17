@@ -14,9 +14,6 @@ module Decode =
         [<Emit("JSON.stringify($0, null, 4) + ''")>]
         let inline anyToString (_: JsonValue) : string = jsNative
 
-        [<Emit("isFinite($0) && !($0 % 1)")>]
-        let inline isIntFinite (_: JsonValue) : bool = jsNative
-
         /// is the value an integer? This returns false for 1.1, NaN, Infinite, ...
         [<Emit("isFinite($0) && Math.floor($0) === $0")>]
         let inline isIntegralValue (_: JsonValue) : bool = jsNative
@@ -54,7 +51,7 @@ module Decode =
                 member __.AsString(value: JsonValue): string =
                     unbox value
 
-                member __.GetField(fieldName: string) (value: JsonValue): 'A =
+                member __.GetField(fieldName: string) (value: JsonValue): JsonValue =
                     value?(fieldName)
 
                 member __.IsArray(value: JsonValue): bool =
@@ -63,14 +60,8 @@ module Decode =
                 member __.IsBoolean(value: JsonValue): bool =
                     value :? bool
 
-                member __.IsIntFinite(value: JsonValue): bool =
-                    Internal.isIntFinite value
-
                 member __.IsIntegralValue(value: JsonValue): bool =
                     Internal.isIntegralValue value
-
-                member __.IsNaN(value: JsonValue): bool =
-                    JS.Constructors.Number.isNaN(!!value)
 
                 member __.IsNullValue(value: JsonValue): bool =
                     isNull value
