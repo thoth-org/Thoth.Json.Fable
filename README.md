@@ -1,1 +1,1 @@
-"# Thoth.Json.Core" 
+# Thoth.Json.Core
