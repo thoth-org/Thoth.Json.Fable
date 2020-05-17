@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>
+Elm-inspired encoder and decoder for JSON, this package is intended to be use on Fable side only.
+
+If you are interested on using it against .NET Core or .NET Framework, please use Thoth.Json.Net.
+    </Description>
+    <PackageProjectUrl>https://github.com/thoth-org/Thoth.Json.Core</PackageProjectUrl>
+    <Packagelicense>https://github.com/thoth-org/Thoth.Json.Core/blob/master/LICENSE.md</Packagelicense>
+    <RepositoryUrl>https://github.com/thoth-org/Thoth.Json.Core</RepositoryUrl>
+    <PackageTags>fable;fsharp;json</PackageTags>
+    <Authors>Maxime Mangel</Authors>
+    <Version>0.0.0</Version>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Decode.fs" />
+    <!-- <Compile Include="Encode.fs" /> -->
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="*.fsproj; **\*.fs; **\*.js" PackagePath="fable" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fable.Core" Version="3.1.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Thoth.Json.Core\src\Thoth.Json.Core.fsproj" />
+  </ItemGroup>
+</Project>
